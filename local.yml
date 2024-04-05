@@ -47,6 +47,9 @@
         - name: Delta
           ansible.builtin.import_tasks: tasks/dev/delta.ansible.yml
 
+        - name: Neovim
+          ansible.builtin.import_tasks: tasks/dev/neovim.ansible.yml
+
         - name: Jetbrains Toolbox
           ansible.builtin.import_tasks: tasks/dev/jetbrains_toolbox.ansible.yml
 

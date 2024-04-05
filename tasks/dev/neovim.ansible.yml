@@ -1,5 +1,40 @@
-# TODO
-# curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-# sudo rm -rf /opt/nvim
-# sudo tar -C /opt -xzf nvim-linux64.tar.gz
-# ln -s /opt/nvim/bin/nvim ~/.local/bin/nvim
+---
+- name: "Neovim: Removing if necessary"
+  ansible.builtin.file:
+    path: /opt/nvim
+    state: absent
+  become: true
+
+- name: "Neovim: Creating target directory"
+  ansible.builtin.file:
+    path: /opt/nvim
+    state: directory
+    mode: "775"
+    # owner: "{{ ansible_user_id }}"
+    # group: "{{ ansible_user_id }}"
+  become: true
+
+- name: "Neovim: Downloading"
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    dest: /tmp
+    mode: "644"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+
+- name: "Neovim: Unzipping tar.gz"
+  ansible.builtin.unarchive:
+    src: /tmp/nvim-linux64.tar.gz
+    dest: /opt/nvim
+    # owner: "{{ ansible_user_id }}"
+    # group: "{{ ansible_user_id }}"
+    extra_opts:
+      - --strip-components=1
+  become: true
+
+- name: "Firefox: Creating symbolic link"
+  ansible.builtin.file:
+    src: /opt/nvim/bin/nvim
+    dest: /usr/local/bin/nvim
+    state: link
+  become: true
