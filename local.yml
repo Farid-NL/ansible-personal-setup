@@ -33,6 +33,7 @@
           become: true
 
     - name: Web Browsers
+      tags: web
       block:
         - name: Firefox
           ansible.builtin.import_tasks: tasks/utils/firefox.ansible.yml
@@ -41,6 +42,7 @@
           ansible.builtin.import_tasks: tasks/utils/chrome.ansible.yml
 
     - name: Development
+      tags: dev
       block:
         - name: Delta
           ansible.builtin.import_tasks: tasks/dev/delta.ansible.yml
@@ -58,6 +60,7 @@
           ansible.builtin.import_tasks: tasks/dev/docker.ansible.yml
 
     - name: Fonts
+      tags: fonts
       block:
         - name: "Fonts: Creating target directory"
           ansible.builtin.file:
