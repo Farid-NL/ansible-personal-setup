@@ -40,6 +40,7 @@
   when: "'docker-ce' not in ansible_facts.packages"
   ansible.builtin.apt:
     name:
+      - docker-ce
       - docker-ce-cli
       - containerd.io
       - docker-buildx-plugin
@@ -52,6 +53,7 @@
   ansible.builtin.group:
     name: docker
     state: present
+  become: true
 
 - name: "Docker: Adding user to docker group"
   when: "'docker-ce' not in ansible_facts.packages"
