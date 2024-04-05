@@ -6,33 +6,30 @@
 
   tasks:
     - name: Packages
+      tags: basic
       block:
-        - name: "Packages: Gathering packages facts"
-          ansible.builtin.package_facts:
-            manager: auto
-
-        - name: "Packages: Installing"
-          when: >
-            'zsh' not in ansible_facts.packages
-            or 'yakuake' not in ansible_facts.packages
-            or 'okular-extra-backends' not in ansible_facts.packages
-            or 'mpv' not in ansible_facts.packages
+        - name: "Packages: Installing basic stuff"
           ansible.builtin.apt:
             name:
               - zsh
               - yakuake
               - okular-extra-backends
               - mpv
+            update_cache: true
             state: present
           become: true
 
-    - name: ZSH Default
-      block:
-        - name: "ZSH Default: Change login shell"
-          when: ansible_user_shell != "/usr/bin/zsh"
-          ansible.builtin.user:
-            name: "{{ ansible_user_id }}"
-            shell: /usr/bin/zsh
+        - name: "Packages: Uninstalling default neovim"
+          ansible.builtin.apt:
+            name: neovim
+            state: absent
+          become: true
+
+        - name: "Packages: Change login shell to zsh"
+          ansible.builtin.shell:
+            cmd: chsh -s $(which zsh)
+          register: zsh
+          changed_when: zsh.rc != 0
           become: true
 
     - name: Web Browsers
@@ -63,7 +60,6 @@
     - name: Fonts
       block:
         - name: "Fonts: Creating target directory"
-          when: fonts_dir_exists.stat.isdir is undefined
           ansible.builtin.file:
             path: ~/.local/share/fonts
             state: directory
