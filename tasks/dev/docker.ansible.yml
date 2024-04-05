@@ -63,8 +63,14 @@
     groups: docker
   become: true
 
-- name: "Docker: Activate group changes"
-  when: "'docker-ce' not in ansible_facts.packages"
-  ansible.builtin.command: newgrp docker
-  register: docker_apply_script
-  changed_when: docker_apply_script.rc != 0
+- name: "Docker: Start on boot 1"
+  ansible.builtin.systemd_service:
+    name: docker
+    enabled: true
+  become: true
+
+- name: "Docker: Start on boot 2"
+  ansible.builtin.systemd_service:
+    name: containerd
+    enabled: true
+  become: true
