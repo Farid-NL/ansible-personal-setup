@@ -87,3 +87,6 @@
 
         - name: Eza
           ansible.builtin.import_tasks: tasks/utils/eza.ansible.yml
+
+        - name: Zoxide
+          ansible.builtin.import_tasks: tasks/utils/zoxide.ansible.yml

@@ -1,0 +1,11 @@
+---
+- name: "Zoxide: Getting effective url"
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/ajeetdsouza/zoxide/releases/latest
+  register: result
+
+- name: "Zoxide: Installaing"
+  ansible.builtin.apt:
+    deb: "{{ result.json.assets[8].browser_download_url }}"
+    state: present
+  become: true
