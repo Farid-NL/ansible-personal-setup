@@ -35,27 +35,27 @@
     - name: Web Browsers
       block:
         - name: Firefox
-          ansible.builtin.import_tasks: imports/utils/firefox.ansible.yml
+          ansible.builtin.import_tasks: tasks/utils/firefox.ansible.yml
 
         - name: Chrome
-          ansible.builtin.import_tasks: imports/utils/chrome.ansible.yml
+          ansible.builtin.import_tasks: tasks/utils/chrome.ansible.yml
 
     - name: Development
       block:
         - name: Delta
-          ansible.builtin.import_tasks: imports/dev/delta.ansible.yml
+          ansible.builtin.import_tasks: tasks/dev/delta.ansible.yml
 
         - name: Jetbrains Toolbox
-          ansible.builtin.import_tasks: imports/dev/jetbrains_toolbox.ansible.yml
+          ansible.builtin.import_tasks: tasks/dev/jetbrains_toolbox.ansible.yml
 
         - name: Code
-          ansible.builtin.import_tasks: imports/dev/code.ansible.yml
+          ansible.builtin.import_tasks: tasks/dev/code.ansible.yml
 
         - name: GitHub CLI
-          ansible.builtin.import_tasks: imports/dev/github_cli.ansible.yml
+          ansible.builtin.import_tasks: tasks/dev/github_cli.ansible.yml
 
         - name: Docker
-          ansible.builtin.import_tasks: imports/dev/docker.ansible.yml
+          ansible.builtin.import_tasks: tasks/dev/docker.ansible.yml
 
     - name: Fonts
       block:
@@ -68,7 +68,7 @@
             group: "{{ ansible_user_id }}"
 
         - name: Jetbrains Mono Font
-          ansible.builtin.import_tasks: imports/fonts/jetbrains_mono.ansible.yml
+          ansible.builtin.import_tasks: tasks/fonts/jetbrains_mono.ansible.yml
 
         - name: Jetbrains Mono Nerd Font
-          ansible.builtin.import_tasks: imports/fonts/jetbrains_mono_nerd.ansible.yml
+          ansible.builtin.import_tasks: tasks/fonts/jetbrains_mono_nerd.ansible.yml
