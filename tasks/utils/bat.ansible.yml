@@ -1,0 +1,11 @@
+---
+- name: "Bat: Getting effective url"
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/sharkdp/bat/releases/latest
+  register: result
+
+- name: "Bat: Installaing"
+  ansible.builtin.apt:
+    deb: "{{ result.json.assets[13].browser_download_url }}"
+    state: present
+  become: true

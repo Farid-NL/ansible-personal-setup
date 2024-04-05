@@ -78,3 +78,9 @@
 
         - name: Jetbrains Mono Nerd Font
           ansible.builtin.import_tasks: tasks/fonts/jetbrains_mono_nerd.ansible.yml
+
+    - name: Utilities
+      tags: utils
+      block:
+        - name: bat
+          ansible.builtin.import_tasks: tasks/utils/bat.ansible.yml
