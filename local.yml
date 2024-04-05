@@ -82,5 +82,8 @@
     - name: Utilities
       tags: utils
       block:
-        - name: bat
+        - name: Bat
           ansible.builtin.import_tasks: tasks/utils/bat.ansible.yml
+
+        - name: Eza
+          ansible.builtin.import_tasks: tasks/utils/eza.ansible.yml
