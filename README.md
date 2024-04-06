@@ -4,25 +4,25 @@
 
 Development stuff
 
-- VSCode
-- Delta
-- Docker
-- GitHub CLI
-- Jetbrains Toolbox
-- Neovim
+- [VSCode](https://code.visualstudio.com/)
+- [Delta](https://dandavison.github.io/delta/)
+- [Docker](https://www.docker.com/)
+- [GitHub CLI](https://cli.github.com/)
+- [Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/)
+- [Neovim](https://neovim.io/)
 
 Fonts
 
-- JetbrainsMono
-- JetbrainsMonoNerdFont
+- [JetbrainsMono](https://www.jetbrains.com/lp/mono/)
+- [JetbrainsMonoNerdFont](https://www.nerdfonts.com/)
 
 Utilities
 
-- Bat
-- Eza
-- Zoxide
+- [Bat](https://github.com/sharkdp/bat)
+- [Eza](https://eza.rocks/)
+- [Zoxide](https://github.com/ajeetdsouza/zoxide)
 
 Web browsers
 
-- Firefox
-- Chrome
+- [Firefox](https://www.mozilla.org/en-US/firefox/)
+- [Chrome](https://www.google.com/chrome/)
