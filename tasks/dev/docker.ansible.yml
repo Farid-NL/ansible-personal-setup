@@ -15,6 +15,10 @@
       - runc
     state: absent
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5
 
 - name: "Docker: Adding GPG Key"
   when: "'docker-ce' not in ansible_facts.packages"
@@ -35,6 +39,10 @@
     state: present
     update_cache: true
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5
 
 - name: "Docker: Installing"
   when: "'docker-ce' not in ansible_facts.packages"
@@ -47,6 +55,10 @@
       - docker-compose-plugin
     state: present
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5
 
 - name: "Docker: Checking group existence"
   when: "'docker-ce' not in ansible_facts.packages"

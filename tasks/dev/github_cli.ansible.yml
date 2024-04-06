@@ -22,6 +22,10 @@
     state: present
     update_cache: true
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5
 
 - name: "GitHub CLI: Installing"
   when: "'gh' not in ansible_facts.packages"
@@ -29,3 +33,7 @@
     name: gh
     state: present
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5

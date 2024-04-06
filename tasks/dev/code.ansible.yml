@@ -9,3 +9,7 @@
     deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
     state: present
   become: true
+  register: apt_status
+  until: apt_status is not failed
+  retries: 5
+  delay: 5
