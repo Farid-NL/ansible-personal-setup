@@ -2,7 +2,7 @@
 
 ## What does it install?
 
-Development stuff
+**Development stuff**
 
 - [VSCode](https://code.visualstudio.com/)
 - [Delta](https://dandavison.github.io/delta/)
@@ -11,18 +11,26 @@ Development stuff
 - [Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/)
 - [Neovim](https://neovim.io/)
 
-Fonts
+**Fonts**
 
 - [JetbrainsMono](https://www.jetbrains.com/lp/mono/)
 - [JetbrainsMonoNerdFont](https://www.nerdfonts.com/)
 
-Utilities
+**Utilities**
 
-- [Bat](https://github.com/sharkdp/bat)
+- [Bat](https://github.com/sharkdp/bat/)
 - [Eza](https://eza.rocks/)
-- [Zoxide](https://github.com/ajeetdsouza/zoxide)
+- [Zoxide](https://github.com/ajeetdsouza/zoxide/)
+- [Yakuake](https://apps.kde.org/yakuake/)
+- [Okular Extra Backends](https://packages.debian.org/sid/okular-extra-backends/)
+- [Zsh](https://zsh.sourceforge.io/)
+- [Bfs](https://github.com/tavianator/bfs/)
 
-Web browsers
+**Web browsers**
 
 - [Firefox](https://www.mozilla.org/en-US/firefox/)
 - [Chrome](https://www.google.com/chrome/)
+
+---
+
+A log out is required for Zsh and Docker
