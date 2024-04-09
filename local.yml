@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: true
+  vars:
+    the_user: "{{ ansible_user_id }}"
 
   tasks:
     - name: Packages
@@ -19,11 +21,10 @@
             state: present
           become: true
 
-        - name: "Packages: Change login shell to zsh"
-          ansible.builtin.shell:
-            cmd: chsh -s $(which zsh)
-          register: zsh
-          changed_when: zsh.rc != 0
+        - name: Change shell to zsh
+          ansible.builtin.user:
+            name: "{{ the_user }}"
+            shell: /usr/bin/zsh
           become: true
 
     - name: Web Browsers
