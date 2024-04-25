@@ -15,6 +15,7 @@
 
 - [JetbrainsMono](https://www.jetbrains.com/lp/mono/)
 - [JetbrainsMonoNerdFont](https://www.nerdfonts.com/)
+- [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
 
 **Utilities**
 

@@ -1,0 +1,44 @@
+---
+- name: "MesloLGS NF Font: Checking if font is installed"
+  ansible.builtin.find:
+    paths: "{{ ansible_env.HOME }}/.local/share/fonts"
+    patterns: 'MesloLGS NF *'
+  register: meslolgs_fonts
+
+- name: "MesloLGS NF Font: Downloading"
+  when: meslolgs_fonts.matched == 0
+  ansible.builtin.get_url:
+    url: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+    mode: "644"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+  loop:
+    - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+
+- name: Renaming files
+  block:
+    - name: "MesloLGS NF Font: Getting list of fonts"
+      when: meslolgs_fonts.matched == 0
+      ansible.builtin.shell:
+        cmd: "ls {{ ansible_env.HOME }}/.local/share/fonts/MesloLGS*"
+      register: files_results
+      changed_when: files_results.rc != 0
+
+    - name: "MesloLGS NF Font: Renaming fonts"
+      ansible.builtin.command:
+        cmd: mv {{ item }} "{{ item | regex_replace('%20', ' ') }}"
+      loop: "{{ files_results.stdout_lines }}"
+      register: renaming
+      changed_when: renaming.rc != 0
+
+- name: "MesloLGS NF Font: Updating cache fonts"
+  when: meslolgs_fonts.matched == 0
+  ansible.builtin.command:
+    cmd: fc-cache -f -v
+    executable: /bin/bash
+  register: font_cache
+  changed_when: font_cache.rc != 0

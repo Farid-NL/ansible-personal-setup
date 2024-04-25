@@ -74,6 +74,9 @@
         - name: Jetbrains Mono Nerd Font
           ansible.builtin.import_tasks: tasks/fonts/jetbrains_mono_nerd.ansible.yml
 
+        - name: MesloLGS NF Font
+          ansible.builtin.import_tasks: tasks/fonts/meslolgs_nf.ansible.yml
+
     - name: Utilities
       tags: utils
       block:
