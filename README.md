@@ -19,6 +19,7 @@
 
 **Utilities**
 
+- [Fzf](https://github.com/junegunn/fzf/)
 - [Bat](https://github.com/sharkdp/bat/)
 - [Eza](https://eza.rocks/)
 - [Zoxide](https://github.com/ajeetdsouza/zoxide/)

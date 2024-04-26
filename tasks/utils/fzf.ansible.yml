@@ -1,0 +1,49 @@
+---
+- name: "Fzf: Checking if is installed"
+  ansible.builtin.stat:
+    path: /opt/fzf
+  register: fzf
+
+- name: "Fzf: Creating target directory"
+  when: not fzf.stat.exists
+  ansible.builtin.file:
+    path: /opt/fzf
+    state: directory
+    mode: "775"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+  become: true
+
+- name: "Fzf: Creating temp directory"
+  when: not fzf.stat.exists
+  ansible.builtin.file:
+    path: /tmp/fzf
+    state: directory
+    mode: "775"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+  become: true
+
+- name: "Fzf: Cloning repo"
+  when: not fzf.stat.exists
+  ansible.builtin.git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: /tmp/fzf
+    depth: 1
+    version: HEAD # noqa: latest
+
+- name: "Fzf: Copying directory"
+  when: not fzf.stat.exists
+  ansible.builtin.copy:
+    src: /tmp/fzf/
+    dest: /opt/fzf/
+    mode: preserve
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+
+- name: "Fzf: Installing binary"
+  when: not fzf.stat.exists
+  ansible.builtin.command:
+    cmd: /opt/fzf/install --bin
+  register: binary
+  changed_when: binary.rc != 0

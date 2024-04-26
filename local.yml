@@ -89,3 +89,6 @@
 
         - name: Zoxide
           ansible.builtin.import_tasks: tasks/utils/zoxide.ansible.yml
+
+        - name: Fzf
+          ansible.builtin.import_tasks: tasks/utils/fzf.ansible.yml
