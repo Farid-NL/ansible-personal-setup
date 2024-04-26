@@ -10,8 +10,8 @@
     path: /opt/nvim
     state: directory
     mode: "775"
-    # owner: "{{ ansible_user_id }}"
-    # group: "{{ ansible_user_id }}"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
   become: true
 
 - name: "Neovim: Downloading"

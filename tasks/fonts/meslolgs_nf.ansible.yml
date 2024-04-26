@@ -39,6 +39,5 @@
   when: meslolgs_fonts.matched == 0
   ansible.builtin.command:
     cmd: fc-cache -f -v
-    executable: /bin/bash
   register: font_cache
   changed_when: font_cache.rc != 0
