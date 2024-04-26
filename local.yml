@@ -16,6 +16,7 @@
               - bfs
               - zsh
               - yakuake
+              - tmux
               - okular-extra-backends
             update_cache: true
             state: present
